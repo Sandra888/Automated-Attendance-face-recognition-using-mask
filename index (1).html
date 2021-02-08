@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/css/index.css">
+        <link rel="icon" href="/static/image/logo.png" sizes="32x32" type="image/png"/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title>AI Pal's</title>
+    </head>
+    <body style="height: 100%; margin: 0; background-color: black;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded-bottom">
+            <a class="navbar-brand" href="#">
+                <img src="/static/image/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> 
+            </a>
+            <div class="navbar-header navbar-center" href="#"> 
+                AI Pal's
+            </div>  
+            <div class="collapse navbar-collapse">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item  ml-auto nav-link tablinks active" href="#" onclick="openTab(event, 'home')" id="defaultOpen"> 
+                        <i class="material-icons form-check-inline " style="color: gray; font-size:17px; vertical-align: -3px; margin: 0%;">home</i> Home 
+                    </a>
+                    <a class="nav-item  nav-link tablinks " href="#" onclick="openTab(event, 'project')" id="project_tab">
+                        <i class="material-icons form-check-inline " style="color: gray; font-size:17px; vertical-align: -3px; margin: 0%;">memory</i> Project 
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <br/>
+        <div class="d-flex justify-content-center" >
+            <div class="container-fluid bg-dark mb-3 rounded" style="width: 98%; height: 84vh;">
+                <div class="card text-white bg-dark mb-3 border-dark mb-3 ">
+                    <div id="home" class="tabcontent">
+                        <div class="card-header text-center">
+                            <i class="material-icons form-check-inline " style="color: white; font-size:17px; vertical-align: -3px; margin: 0%;">home</i> Home Screen
+                        </div>
+                        <div class="card-body text-center">
+                            <br/>
+                            <h5 class="card-title">
+                                Automated Attendance System Using Facial Recognition <br> With Mask
+                            </h5>
+                            <img src="/static/image/face_recognition.gif" width="300" height="170" alt=""/>
+                            <p class="card-text">
+                                Click here to view the 
+                                <a href="#" onclick="openTabViaLink()" style="color: aqua;">
+                                    project
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="project" class="tabcontent"> 
+                        <div class="card-header text-center">
+                            <i class="material-icons form-check-inline " style="color: white; font-size:17px;  vertical-align: -3px; margin: 0%;">memory</i> Project Screen
+                        </div>
+                        <div class="card-body text-center">
+                            <div id="capture" class="subtabcontent">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 50%;" scope="col">
+                                                <i class="material-icons form-check-inline " style="color: white; font-size:17px;  vertical-align: -3px; margin: 0%;">camera_alt</i> Input Frame
+                                            </th>
+                                            <th style="width: 50%;" scope="col">
+                                                <i class="material-icons form-check-inline " style="color: white; font-size:17px;  vertical-align: -3px; margin: 0%;">person_add</i> Add Student
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 50%;">
+                                                <img src="{{ url_for('get_video_frame') }}" onerror="this.onerror=null; this.src='/static/image/no_input.png'" alt="" width="380" height="250">
+                                            </td>
+                                            <td style="width: 50%;">
+                                                <div style="height:38vh;">
+                                                    <form id="capture_module">
+                                                        <div class="mx-auto" style="height:29.5vh; width: 85%; padding-top: 15px;">
+                                                            <div class="form-group row">
+                                                            <label for="name" class="col-sm-3 col-form-label ">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="name" name="student_name" placeholder="Enter your Name" required autofocus>
+                                                            </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                            <label for="rollno" class="col-sm-3 col-form-label ">Rollno&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="rollno" name="student_rollno" placeholder="Enter your Rollno" required>
+                                                                <small class="form-text text-muted">If Rollno isn't available, type '0'.</small>
+                                                            </div>
+                                                            </div>
+                                                            <fieldset class="form-group">
+                                                            <div class="row">
+                                                                <legend class="col-form-label col-sm-3 pt-0 ">Wearing Mask</legend>
+                                                                <div class="col-sm-9">
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="student_wear_mask" id="gridRadios2" value="mask">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                    Yes
+                                                                    </label>
+                                                                </div>
+                                                                &nbsp;
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="student_wear_mask" id="gridRadios1" value="without_mask" checked>
+                                                                    <label class="form-check-label" for="gridRadios1">
+                                                                    No
+                                                                    </label>
+                                                                </div>
+
+                                                                </div>
+                                                            </div>
+                                                            </fieldset>
+                                                        </div>
+                                                            <div class="form-group row">
+                                                                <div class="mx-auto col-sm-10">
+                                                                    <button id="capture_module_submit" type="submit" class="btn btn-secondary">Capture</button>
+                                                                </div>
+                                                            </div>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="test" class="subtabcontent">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 50%;" scope="col"><i class="material-icons form-check-inline " style="color: white; font-size:17px; vertical-align: -3px; margin: 0%;">camera_alt</i> Input Frame</th>
+                                        <th style="width: 50%;" scope="col"><i class="material-icons form-check-inline " style="color: white; font-size:17px; vertical-align: -3px; margin: 0%;">camera_front</i> Recognized Faces</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td style="width: 50%;"><img src="{{ url_for('get_video_frame') }}" onerror="this.onerror=null; this.src='/static/image/no_input.png'" alt="" width="380" height="250"></td>
+                                        <td style="width: 50%;">
+                                            <div style="height:38vh;">
+                                                <div style="height:29.5vh;padding-top: 15px;">
+                                                    <div id="recognized_face_table">
+                                                    </div>
+                                                </div>
+                                                <form id="attendance_module">
+                                                    <div class="form-group row">
+                                                        <div class="mx-auto col-sm-10">
+                                                            <button type="submit" class="btn btn-secondary" id="mixButton" name="session">Start Session</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="view" class="subtabcontent">
+                                <div class="viewattendance">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="float-left d-inline-block" style="display: none;">
+                                                <a href="#" id="attendance_backbtn" onclick="ViewSubAttendance()" style="display: none;">
+                                                    <i class="material-icons " style="vertical-align:middle;font-size:19px;color: white;">keyboard_backspace</i>
+                                                </a>
+                                            </div><i class="inline-icon material-icons form-check-inline " style="color: white; font-size:17px; vertical-align: -3px; margin: 0%;">date_range</i> View Attendance
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <div style="height:38vh; padding-top: 8px;">
+                                                <div id="view_attendance_module">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="viewsubattendance" style="display: none">
+                                <div id="view_sub_attendance_module">
+                                </div>
+                            </div>
+                            </div>
+                            <hr/>
+                            <div class="mx-auto" id="status_message_main" style="margin-bottom:24px;">
+                                <div style="padding-bottom:10px;">Status: None</div>
+                                <div class="progress mx-auto" style="height: 1px; width: 40%; ">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="btn-group projecttab" role="group" aria-label="...">
+                                <button type="button" onclick="openSubTab(event, 'capture')" class="subtablinks btn btn-outline-light active" id="defaultSubOpen">Capture & Train</button>
+                                <button type="button" onclick="openSubTab(event, 'test')"class="subtablinks btn btn-outline-light">Take Attendance</button>
+                                <button type="button" onclick="openSubTab(event, 'view')"class="subtablinks btn btn-outline-light">View Attendance</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type = "text/javascript" src = "/static/js/jquery-3.4.1.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+        <script>
+            function openTab(evt, tabName)
+            {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) 
+                {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) 
+                {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+            document.getElementById("defaultOpen").click();
+            function openTabViaLink()
+            {
+                document.getElementById("project_tab").click();
+            }
+            function openSubTab(evt, subTabName)
+            {
+                var i, subTabcontent,subTablinks;
+                subTabcontent = document.getElementsByClassName("subtabcontent");
+                for (i = 0; i < subTabcontent.length; i++) 
+                {
+                    subTabcontent[i].style.display = "none";
+                }
+                subTablinks = document.getElementsByClassName("subtablinks");
+                for (i = 0; i < subTablinks.length; i++) 
+                {
+                    subTablinks[i].className = subTablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(subTabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+            document.getElementById("defaultSubOpen").click();
+
+            var mixButton = document.getElementById("mixButton");
+            mixButton.addEventListener("click", Start);
+
+            function Start(){
+                mixButton.removeEventListener("click", Start);
+                mixButton.addEventListener("click", Stop);
+                $(".projecttab").hide();
+                mixButton.value ="1";
+                $("#mixButton").text('Stop Session').button("refresh");
+		    }
+
+            function Stop()
+            {
+                mixButton.removeEventListener("click", Stop);
+                mixButton.addEventListener("click", Start);
+                $(".projecttab").show();
+                mixButton.value ="0";
+                $("#mixButton").text('Start Session').button("refresh");
+		    }
+
+            var attendance_backbtn = document.getElementById("attendance_backbtn");
+            attendance_backbtn.addEventListener("click",ViewAttendance);
+
+            function ViewSubAttendance(){
+
+                $(".viewattendance").hide();
+                $(".viewsubattendance").show();
+
+		    }
+
+            function ViewAttendance()
+            {
+                $(".viewattendance").show();
+                $(".viewsubattendance").hide();
+		    }
+
+            $("#capture_module").submit(function(e) {
+			e.preventDefault(); 
+			var form = $(this);
+			$.ajax({
+				type: "POST",
+				url: "/capture_module/",
+				data: form.serialize(), 
+				});			
+		    });
+
+            function FetchStatusMessageMain(){
+                $.ajax({
+                    url: "/get_status_message/",
+                    type: "POST",
+                    success: function(response){
+                        $('div#status_message_main').html(response.data);
+                    }
+                });
+            }
+
+            $(document).ready(function(){
+            setInterval(FetchStatusMessageMain,1000);
+            });
+
+            $("#attendance_module").submit(function(e) {
+			e.preventDefault(); 
+			$.ajax({
+				type: "POST",
+				url: "/attendance_module/",
+				data: {
+                    data: mixButton.value
+                } ,
+				});			
+		    });
+
+            function FetchRecognizedFaceTable(){
+                $.ajax({
+                    url: "/get_recognized_face_table/",
+                    type: "POST",
+                    success: function(response){
+                        $('div#recognized_face_table').html(response.data);
+                    }
+                });
+            }
+
+            $(document).ready(function(){
+            setInterval(FetchRecognizedFaceTable,1000);
+            });
+
+
+            $(document).on('click','.view_sub_attendance_module',function() {
+                ViewSubAttendance();
+                var val = $(this).val();
+                $('div#view_sub_attendance_module').html("<table class='table'><thead><tr><th scope='col'><div class='float-left d-inline-block'><a href='#' id='attendance_backbtn' onclick='ViewAttendance()'><i class='material-icons' style='vertical-align:middle;font-size:19px;color: white;'>keyboard_backspace</i></a></div>View Attendance</th></tr></thead><tbody><tr><td><div style='height:38vh; padding-top: 8px;'><table class='table-dark table-bordered compressed'><thead><tr><th style='width: 4%;'>S.no</th><th style='width: 40%;'>Name</th><th style='width: 20%;'>Rollno</th><th>Date</th><th>Time</th></tr></thead><tbody></tbody></table></div></td></tr> </tbody></table>" );
+                $.ajax({
+                    type: "POST",
+                    url: "/retrive_sub_attendance_module/",
+                    data: {
+                        csv_id:val
+                        },
+                    });
+                });
+
+            function FetchAttendanceModule(){
+                $.ajax({
+                    url: "/get_attendance_module/",
+                    type: "POST",
+                    success: function(response){
+                        $('div#view_attendance_module').html(response.data);
+                        
+                    }
+                });
+            }
+
+            $(document).ready(function(){
+            setInterval(FetchAttendanceModule,1000);
+            });
+
+            function FetchSubAttendanceModule(){
+                $.ajax({
+                    url: "/get_sub_attendance_module/",
+                    type: "POST",
+                    success: function(response){
+                        $('div#view_sub_attendance_module').html(response.data);
+                    }
+                });
+            }
+
+            $(document).ready(function(){
+            setInterval(FetchSubAttendanceModule,1000);
+            });
+        </script>
+    </body>
+</html>
